@@ -54,6 +54,7 @@ const Home: React.FC = () => {
 
     setCycles((state) => [...state, newCycle])
     setActiveCycleId(newCycle.id)
+    setAmountSecondsPassed(0)
     reset()
   }
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
@@ -69,11 +70,23 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (activeCycle) {
-      setInterval(() => {
+      document.title = `${minutes}:${seconds}`
+    }
+  }, [minutes, seconds])
+
+  useEffect(() => {
+    let interval: number
+
+    if (activeCycle) {
+      interval = setInterval(() => {
         setAmountSecondsPassed(
           differenceInSeconds(new Date(), activeCycle.startDate),
         )
       }, 100)
+    }
+
+    return () => {
+      clearInterval(interval)
     }
   }, [activeCycle])
 
