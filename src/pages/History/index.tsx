@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { HistoryContainer, HistoryList, Status } from './styles'
 
 const History: React.FC = () => {
