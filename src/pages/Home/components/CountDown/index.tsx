@@ -9,9 +9,10 @@ const CountDown: React.FC = () => {
     activeCycle,
     activeCycleId,
     markCurrentCycleAsFinished,
-    markCurrentCycleAsInterrupted,
+    // markCurrentCycleAsInterrupted,
     amountSecondsPassed,
     setSecondsPassed,
+    interruptCurrentCycle,
   } = useContext(CyclesContext)
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
@@ -36,7 +37,7 @@ const CountDown: React.FC = () => {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(
           new Date(),
-          activeCycle.startDate,
+          new Date(activeCycle.startDate),
         )
 
         if (secondsDifference >= totalSeconds) {
@@ -46,7 +47,7 @@ const CountDown: React.FC = () => {
         } else {
           setSecondsPassed(secondsDifference)
         }
-      }, 100)
+      }, 1000)
     }
 
     return () => {
@@ -67,11 +68,11 @@ const CountDown: React.FC = () => {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(
           new Date(),
-          activeCycle.startDate,
+          new Date(activeCycle.startDate),
         )
 
         if (secondsDifference >= totalSeconds) {
-          markCurrentCycleAsInterrupted()
+          interruptCurrentCycle()
           setSecondsPassed(totalSeconds)
           clearInterval(interval)
         } else {
@@ -87,8 +88,9 @@ const CountDown: React.FC = () => {
     activeCycle,
     totalSeconds,
     activeCycleId,
-    markCurrentCycleAsInterrupted,
+    // markCurrentCycleAsInterrupted,
     setSecondsPassed,
+    interruptCurrentCycle,
   ])
   return (
     <CountDownContainer>
