@@ -4,10 +4,10 @@ Este projeto se baseia na implementação da Técnica Pomodoro em um sistema de 
 
 ## Tecnologias utilizadas
 
-Styled Components
-React Router Dom
-ContextAPI
-Reducers
-Immer
-React Hook Form 
-Zod
+- Styled Components
+- React Router Dom
+- ContextAPI
+- Reducers
+- Immer
+- React Hook Form 
+- Zod
